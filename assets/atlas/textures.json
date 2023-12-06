@@ -1,0 +1,74 @@
+{
+  "textures": [{
+    "image": "textures.png",
+    "frames": [
+      {
+        "filename": "Apple",
+        "trimmed": true,
+        "rotated": false,
+        "frame": {
+          "x": 2,
+          "y": 2,
+          "w": 40,
+          "h": 40
+        },
+        "spriteSourceSize": {
+          "x": 0,
+          "y": 0,
+          "w": 40,
+          "h": 40
+        },
+        "sourceSize": {
+          "w": 40,
+          "h": 40
+        }
+      },
+      {
+        "filename": "Enemy",
+        "trimmed": true,
+        "rotated": false,
+        "frame": {
+          "x": 44,
+          "y": 2,
+          "w": 40,
+          "h": 40
+        },
+        "spriteSourceSize": {
+          "x": 0,
+          "y": 0,
+          "w": 40,
+          "h": 40
+        },
+        "sourceSize": {
+          "w": 40,
+          "h": 40
+        }
+      },
+      {
+        "filename": "Player",
+        "trimmed": true,
+        "rotated": false,
+        "frame": {
+          "x": 86,
+          "y": 2,
+          "w": 40,
+          "h": 40
+        },
+        "spriteSourceSize": {
+          "x": 0,
+          "y": 0,
+          "w": 40,
+          "h": 40
+        },
+        "sourceSize": {
+          "w": 40,
+          "h": 40
+        }
+      }
+    ]
+  }],
+  "meta": {
+    "app": "Phaser Editor - Atlas Generator",
+    "version": "2"
+  }
+}

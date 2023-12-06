@@ -1,0 +1,60 @@
+{
+  "-app": "Scene Editor - Phaser Editor v2.1.8",
+  "-version": 1,
+  "compilerLang": "JAVA_SCRIPT_6",
+  "displayList": {
+    "-id": "8d715559-399d-42e9-9525-4a1dc0336b31",
+    "-type": "DisplayList",
+    "children": [
+      {
+        "-id": "ef81e864-7a7c-491b-b1f8-2f0b7228cea9",
+        "-type": "Image",
+        "children": [],
+        "variableName": "Player",
+        "variableField": true,
+        "x": 360,
+        "y": 640,
+        "scaleX": 2,
+        "scaleY": 2,
+        "textureKey": "textures",
+        "textureFrame": "Player"
+      },
+      {
+        "-id": "34123cb8-8812-4790-b24b-215a483d894e",
+        "-type": "Image",
+        "children": [],
+        "variableName": "Apple",
+        "variableField": true,
+        "x": 240,
+        "y": 300,
+        "scaleX": 2,
+        "scaleY": 2,
+        "textureKey": "textures",
+        "textureFrame": "Apple"
+      },
+      {
+        "-id": "ce2ed34b-1fc7-4c69-a75f-cdafe23cd397",
+        "-type": "Image",
+        "children": [],
+        "variableName": "Enemy",
+        "variableField": true,
+        "x": 480,
+        "y": 300,
+        "scaleX": 2,
+        "scaleY": 2,
+        "textureKey": "textures",
+        "textureFrame": "Enemy"
+      }
+    ]
+  },
+  "groups": {
+    "-id": "89eecac1-e75a-4225-a3ba-7ac59572410e",
+    "-type": "Groups",
+    "children": []
+  },
+  "borderWidth": 720,
+  "borderHeight": 1280,
+  "createMethodName": "_create",
+  "methodContextType": "SCENE",
+  "sceneKey": "Scene1"
+}
