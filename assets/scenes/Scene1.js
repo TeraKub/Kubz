@@ -29,8 +29,6 @@ class Scene1 extends Phaser.Scene {
 	}
 	
 	
-	
-	
 	/* START-USER-CODE */
 
 	create() {
@@ -67,12 +65,14 @@ class Scene1 extends Phaser.Scene {
 	}
 
 	update() {
-		if (this.moove) {
-			this.playerMoove();
+		if (!this.moove) {
+			return;
 		}
 		
+		this.playerMove();
 		this.chekEdgeOfField();
 		this.chekHardest();
+		
 	}
 	
 	boom() {
@@ -81,10 +81,13 @@ class Scene1 extends Phaser.Scene {
 		this.deadMess = 'GAME OVER';
 		var style = {font: "60px Arial", fill: "#fff"}
 		this.scoreText = this.add.text(180, 150, this.deadMess, style);
+		
+		this.createRestartButton();
+    	this.restartButton.visible = true;
 	}
 	
 	nyam() {
-		/*console.log("nyam")*/
+		//console.log("nyam")
 		this.fApple.x = Phaser.Math.Between(100, 620);
 		this.fApple.y = Phaser.Math.Between(100, 1180);
 		
@@ -116,12 +119,12 @@ class Scene1 extends Phaser.Scene {
 		if (this.score == this.chekScore + 10) {
 			this.speed += 1;
 			this.chekScore = this.score;
-			console.log(this.chekScore);
+			//console.log(this.chekScore);
 		}
 	}
 	
 	createEnemy() {
-		console.log("createEnemy");
+		//console.log("createEnemy");
         var newEnemy = this.add.image(
             Phaser.Math.Between(100, 620),
             Phaser.Math.Between(100, 1180),
@@ -132,34 +135,39 @@ class Scene1 extends Phaser.Scene {
         this.physics.add.existing(newEnemy);
 		this.physics.add.overlap(this.fPlayer, newEnemy, this.boom, null, this);
 
-        // Добавьте новый fEnemy в группу или массив, если вам нужно отслеживать несколько врагов
-        // Например, this.enemies.push(newEnemy);
     }
+
+	chekEdgeOfField() {
+		if (this.fPlayer.x < 0 || this.fPlayer.x > 720 || this.fPlayer.y < 0 || this.fPlayer.y > 1280) {
+			this.boom();
+		}
+	}
 	
-	playerMoove() {
+	createRestartButton() {
+	    var style = { font: "40px Arial", fill: "#fff" };
+	    this.restartButton = this.add.text(280, 330, 'RESTART', style)
+	        .setInteractive() // setInteractive теперь возвращает this, что позволяет цепочку вызовов
+	        .on('pointerdown', this.restartGame, this); // Использование события pointerdown
+	    this.restartButton.visible = false;
+	}
+	
+	restartGame() {
+		//console.log("Restart");
+		this.scene.restart();
+	}
+	
+	playerMove() {
 		if (this.cursors.right.isDown) {
-			this.left = false;
-			this.down = false;
-			this.up = false;
-			this.right = true;
+			this.moveRight();
 		}
 		if (this.cursors.left.isDown) {
-			this.right = false;
-			this.down = false;
-			this.up = false;
-			this.left = true;
+			this.moveLeft();
 		}
 		if (this.cursors.down.isDown) {
-			this.left = false;
-			this.right = false;
-			this.up = false;
-			this.down = true;
+			this.moveDown();
 		}
 		if (this.cursors.up.isDown) {
-			this.left = false;
-			this.down = false;
-			this.right = false;
-			this.up = true;
+			this.moveUp();
 		}
 		
 		if (this.right) {
@@ -176,12 +184,6 @@ class Scene1 extends Phaser.Scene {
 		}
 	}
 	
-	chekEdgeOfField() {
-		if (this.fPlayer.x < 0 || this.fPlayer.x > 720 || this.fPlayer.y < 0 || this.fPlayer.y > 1280) {
-			this.boom();
-		}
-	}
-	
 	handleSwipe(pointer) {
 	    const swipeTime = pointer.upTime - pointer.downTime;
 	    const swipe = new Phaser.Geom.Point(pointer.upX - pointer.downX, pointer.upY - pointer.downY);
@@ -192,43 +194,43 @@ class Scene1 extends Phaser.Scene {
 	        if (Math.abs(swipe.x) > Math.abs(swipe.y)) {
 	            // Горизонтальный свайп
 	            if (swipe.x > 0) {
-	                this.handleSwipeRight();
+	                this.moveRight();
 	            } else {
-	                this.handleSwipeLeft();
+	                this.moveLeft();
 	            }
 	        } else {
 	            // Вертикальный свайп
 	            if (swipe.y > 0) {
-	                this.handleSwipeDown();
+	                this.moveDown();
 	            } else {
-	                this.handleSwipeUp();
+	                this.moveUp();
 	            }
 	        }
 	    }
 	}
 	
-	handleSwipeUp() {
+	moveUp() {
 	    this.left = false;
 	    this.down = false;
 	    this.up = true;
 	    this.right = false;
 	}
 	
-	handleSwipeDown() {
+	moveDown() {
 	    this.left = false;
 	    this.down = true;
 	    this.up = false;
 	    this.right = false;
 	}
 	
-	handleSwipeLeft() {
+	moveLeft() {
 	    this.left = true;
 	    this.down = false;
 	    this.up = false;
 	    this.right = false;
 	}
 	
-	handleSwipeRight() {
+	moveRight() {
 	    this.left = false;
 	    this.down = false;
 	    this.up = false;
