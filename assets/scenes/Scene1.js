@@ -80,7 +80,7 @@ class Scene1 extends Phaser.Scene {
 		
 		this.deadMess = 'ЛОШАРА!';
 		var style = {font: "60px Arial", fill: "#fff"}
-		this.scoreText = this.add.text(230, 150, this.deadMess, style);
+		this.scoreText = this.add.text(225, 150, this.deadMess, style);
 		
 		this.createRestartButton();
     	this.restartButton.visible = true;
@@ -145,7 +145,7 @@ class Scene1 extends Phaser.Scene {
 	
 	createRestartButton() {
 	    var style = { font: "40px Arial", fill: "#fff" };
-	    this.restartButton = this.add.text(250, 330, 'ИГРАТЬ ЕЩЁ', style)
+	    this.restartButton = this.add.text(235, 330, 'ИГРАТЬ ЕЩЁ', style)
 	        .setInteractive() // setInteractive теперь возвращает this, что позволяет цепочку вызовов
 	        .on('pointerdown', this.restartGame, this); // Использование события pointerdown
 	    this.restartButton.visible = false;
