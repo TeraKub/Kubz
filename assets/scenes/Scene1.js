@@ -22,11 +22,17 @@ class Scene1 extends Phaser.Scene {
 		var Enemy = this.add.image(480.0, 300.0, "textures", "Enemy");
 		Enemy.setScale(2.0, 2.0);
 		
+		this.nyamSound = this.sound.add("nyamSound");
+		this.addEnemySound = this.sound.add("addEnemySound");
+		this.boomSound = this.sound.add("boomSound");
+		
 		this.fPlayer = Player;
 		this.fApple = Apple;
 		this.fEnemy = Enemy;
 		
 	}
+	
+	
 	
 	
 	/* START-USER-CODE */
@@ -61,7 +67,6 @@ class Scene1 extends Phaser.Scene {
 		this.left = false;
 		this.down = false;
 		this.up = false;
-		
 	}
 
 	update() {
@@ -72,10 +77,10 @@ class Scene1 extends Phaser.Scene {
 		this.playerMove();
 		this.chekEdgeOfField();
 		this.chekHardest();
-		
 	}
 	
 	boom() {
+		this.boomSound.play();
 		this.moove = false;
 		
 		this.deadMess = 'ЛОШАРА!';
@@ -84,10 +89,13 @@ class Scene1 extends Phaser.Scene {
 		
 		this.createRestartButton();
     	this.restartButton.visible = true;
+
+		this.physics.pause();
 	}
 	
 	nyam() {
 		//console.log("nyam")
+		this.nyamSound.play();
 		this.fApple.x = Phaser.Math.Between(100, 620);
 		this.fApple.y = Phaser.Math.Between(100, 1180);
 		
@@ -125,6 +133,7 @@ class Scene1 extends Phaser.Scene {
 	
 	createEnemy() {
 		//console.log("createEnemy");
+		this.addEnemySound.play();
         var newEnemy = this.add.image(
             Phaser.Math.Between(100, 620),
             Phaser.Math.Between(100, 1180),
