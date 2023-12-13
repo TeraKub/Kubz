@@ -78,9 +78,9 @@ class Scene1 extends Phaser.Scene {
 	boom() {
 		this.moove = false;
 		
-		this.deadMess = 'GAME OVER';
+		this.deadMess = 'ЛОШАРА!';
 		var style = {font: "60px Arial", fill: "#fff"}
-		this.scoreText = this.add.text(180, 150, this.deadMess, style);
+		this.scoreText = this.add.text(190, 150, this.deadMess, style);
 		
 		this.createRestartButton();
     	this.restartButton.visible = true;
