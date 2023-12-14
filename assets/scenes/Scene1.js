@@ -25,15 +25,13 @@ class Scene1 extends Phaser.Scene {
 		this.nyamSound = this.sound.add("nyamSound");
 		this.addEnemySound = this.sound.add("addEnemySound");
 		this.boomSound = this.sound.add("boomSound");
+		this.muslo = this.sound.add("muslo");
 		
 		this.fPlayer = Player;
 		this.fApple = Apple;
 		this.fEnemy = Enemy;
 		
 	}
-	
-	
-	
 	
 	/* START-USER-CODE */
 
@@ -80,6 +78,7 @@ class Scene1 extends Phaser.Scene {
 	}
 	
 	boom() {
+		this.muslo.stop();
 		this.boomSound.play();
 		this.moove = false;
 		
@@ -188,6 +187,12 @@ class Scene1 extends Phaser.Scene {
 		}
 		if (this.up) {
 			this.fPlayer.y -= this.speed;
+		}
+
+		if (this.right || this.left || this.down || this.up) {
+			if (!this.muslo.isPlaying) {
+		            this.muslo.play();
+			}
 		}
 	}
 	
