@@ -22,7 +22,7 @@ class Scene1 extends Phaser.Scene {
 		var Enemy = this.add.image(480.0, 300.0, "textures", "Enemy");
 		Enemy.setScale(2.0, 2.0);
 		
-		this.nyamSound = this.sound.add("nyamSound");
+		//this.nyamSound = this.sound.add("nyamSound");
 		//this.addEnemySound = this.sound.add("addEnemySound");
 		//this.boomSound = this.sound.add("boomSound");
 		
@@ -94,7 +94,7 @@ class Scene1 extends Phaser.Scene {
 	}
 	
 	nyam() {
-		this.nyamSound.play();
+		//this.nyamSound.play();
 		
 		this.fApple.x = Phaser.Math.Between(100, 620);
 		this.fApple.y = Phaser.Math.Between(100, 1180);
