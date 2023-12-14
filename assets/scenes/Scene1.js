@@ -23,8 +23,8 @@ class Scene1 extends Phaser.Scene {
 		Enemy.setScale(2.0, 2.0);
 		
 		this.nyamSound = this.sound.add("nyamSound");
-		this.addEnemySound = this.sound.add("addEnemySound");
-		this.boomSound = this.sound.add("boomSound");
+		//this.addEnemySound = this.sound.add("addEnemySound");
+		//this.boomSound = this.sound.add("boomSound");
 		
 		this.fPlayer = Player;
 		this.fApple = Apple;
@@ -80,7 +80,7 @@ class Scene1 extends Phaser.Scene {
 	}
 	
 	boom() {
-		this.boomSound.play();
+		//this.boomSound.play();
 		this.moove = false;
 		
 		this.deadMess = 'ЛОШАРА!';
@@ -94,8 +94,8 @@ class Scene1 extends Phaser.Scene {
 	}
 	
 	nyam() {
-		//console.log("nyam")
 		this.nyamSound.play();
+		
 		this.fApple.x = Phaser.Math.Between(100, 620);
 		this.fApple.y = Phaser.Math.Between(100, 1180);
 		
@@ -127,13 +127,11 @@ class Scene1 extends Phaser.Scene {
 		if (this.score == this.chekScore + 10) {
 			this.speed += 1;
 			this.chekScore = this.score;
-			//console.log(this.chekScore);
 		}
 	}
 	
 	createEnemy() {
-		//console.log("createEnemy");
-		this.addEnemySound.play();
+		//this.addEnemySound.play();
         var newEnemy = this.add.image(
             Phaser.Math.Between(100, 620),
             Phaser.Math.Between(100, 1180),
