@@ -22,7 +22,7 @@ class Boot extends Phaser.Scene {
 
 	preload() {
 		this.load.pack("pack", "assets/pack.json");
-		this.load.audio("nyamSound", "assets/sounds/BallsMoovie.wav");
+		//this.load.audio("nyamSound", "assets/sounds/BallsMoovie.wav");
 		//this.load.audio("addEnemySound", "assets/sounds/addEnemy.mp3");
 		//this.load.audio("boomSound", "assets/sounds/boomSound.wav");
 	}
