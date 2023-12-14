@@ -25,6 +25,7 @@ class Boot extends Phaser.Scene {
 		this.load.audio("nyamSound", "assets/sounds/BallsMoovie.mp3");
 		this.load.audio("addEnemySound", "assets/sounds/addEnemy.mp3");
 		this.load.audio("boomSound", "assets/sounds/boomSound.mp3");
+		this.load.audio("muslo", "assets/sounds/muslo.mp3");
 	}
 
 	create() {
