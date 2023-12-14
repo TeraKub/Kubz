@@ -23,7 +23,7 @@ class Scene1 extends Phaser.Scene {
 		Enemy.setScale(2.0, 2.0);
 		
 		//this.nyamSound = this.sound.add("nyamSound");
-		//this.addEnemySound = this.sound.add("addEnemySound");
+		this.addEnemySound = this.sound.add("addEnemySound");
 		//this.boomSound = this.sound.add("boomSound");
 		
 		this.fPlayer = Player;
@@ -131,7 +131,7 @@ class Scene1 extends Phaser.Scene {
 	}
 	
 	createEnemy() {
-		//this.addEnemySound.play();
+		this.addEnemySound.play();
         var newEnemy = this.add.image(
             Phaser.Math.Between(100, 620),
             Phaser.Math.Between(100, 1180),
