@@ -85,11 +85,21 @@ class Scene1 extends Phaser.Scene {
 		this.deadMess = 'ЛОШАРА!';
 		var style = {font: "60px Arial", fill: "#fff"}
 		this.scoreText = this.add.text(225, 150, this.deadMess, style);
+
+		this.sendScoreToServer(this.score);
 		
 		this.createRestartButton();
-    	this.restartButton.visible = true;
+    		this.restartButton.visible = true;
 		
 		this.physics.pause();
+	}
+
+	sendScoreToServer(score) {
+		const serverAddress = "http://94.26.225.132:5000";
+	    	const xhr = new XMLHttpRequest();
+		xhr.open("POST", `${serverAddress}/game-over`, true);
+		xhr.setRequestHeader("Content-Type", "application/json");
+		xhr.send(JSON.stringify({ score: score }));
 	}
 	
 	nyam() {
