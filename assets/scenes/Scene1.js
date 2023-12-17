@@ -98,8 +98,8 @@ class Scene1 extends Phaser.Scene {
 		if (this.score > 99) {
 			this.deadMess = 'МАСИК!!!';
 		}
-		var style = {font: "60px Arial", fill: "#fff"}
-		this.scoreText = this.add.text(225, 150, this.deadMess, style);
+		var style = {font: "60px Arial", fill: "#fff", align: "center"};
+		this.scoreText = this.add.text(400, 300, this.deadMess, style).setOrigin(0.5);
 
 		this.sendScoreToServer(this.score);
 		
