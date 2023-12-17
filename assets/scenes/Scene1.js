@@ -99,7 +99,7 @@ class Scene1 extends Phaser.Scene {
 			this.deadMess = 'МАСИК!!!';
 		}
 		var style = {font: "60px Arial", fill: "#fff", align: "center"};
-		this.scoreText = this.add.text(360, 280, this.deadMess, style).setOrigin(0.5);
+		this.scoreText = this.add.text(360, 220, this.deadMess, style).setOrigin(0.5);
 
 		this.sendScoreToServer(this.score);
 		
@@ -191,8 +191,8 @@ class Scene1 extends Phaser.Scene {
 	}
 	
 	createRestartButton() {
-	    var style = { font: "40px Arial", fill: "#fff" };
-	    this.restartButton = this.add.text(235, 330, 'ИГРАТЬ ЕЩЁ', style)
+	    var style = { font: "40px Arial", fill: "#fff", align: "center" };
+	    this.restartButton = this.add.text(360, 400, 'ИГРАТЬ ЕЩЁ', style).setOrigin(0.5)
 	        .setInteractive()
 	        .on('pointerdown', this.restartGame, this);
 	    this.restartButton.visible = false;
