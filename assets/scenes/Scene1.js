@@ -85,13 +85,17 @@ class Scene1 extends Phaser.Scene {
 		this.deadMess = 'ЛОШАРА!';
 		if (this.score > 19) {
 			this.deadMess = 'ЧУШПАН!';
-		} else if (this.score > 39) {
+		}
+		if (this.score > 39) {
 			this.deadMess = 'СКОРЛУПА!';
-		} else if (this.score > 59) {
+		}
+		if (this.score > 59) {
 			this.deadMess = 'ПОМАЗОК!';
-		} else if (this.score > 79) {
+		}
+		if (this.score > 79) {
 			this.deadMess = 'СТАРШАК!';
-		} else if (this.score > 99) {
+		}
+		if (this.score > 99) {
 			this.deadMess = 'МАСИК!!!';
 		}
 		var style = {font: "60px Arial", fill: "#fff"}
