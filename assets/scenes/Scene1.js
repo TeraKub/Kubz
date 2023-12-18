@@ -110,9 +110,10 @@ class Scene1 extends Phaser.Scene {
 	}
 
 	sendScoreToServer(score) {
-		const serverAddress = "http://94.26.225.132:5000";
+		// const serverAddress = "http://94.26.225.132:5000";
 	    	const xhr = new XMLHttpRequest();
-		xhr.open("POST", `${serverAddress}/game-over`, true);
+		// xhr.open("POST", `${serverAddress}/game-over`, true);
+		xhr.open("POST", `http://94.26.225.132:5000/game-over`, true);
 		xhr.setRequestHeader("Content-Type", "application/json");
 		xhr.send(JSON.stringify({ score: score }));
 	}
