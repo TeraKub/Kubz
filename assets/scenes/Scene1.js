@@ -116,8 +116,8 @@ class Scene1 extends Phaser.Scene {
 	sendScoreToServerGet() {
 		console.log('in to sendScoreToServerGet()');
 		var xhr = new XMLHttpRequest();
-	    	var url = 'https://94.26.225.132:5000/sendMessage?message=' + this.score;
-	
+	    	//var url = 'https://94.26.225.132:5000/sendMessage?message=' + this.score;
+		var url = 'https://cors-anywhere.herokuapp.com/https://94.26.225.132:5000/sendMessage?message=' + this.score;
 	    	xhr.onreadystatechange = function () {
 	        	if (xhr.readyState == 4 && xhr.status == 200) {
 	            	// Обработка успешного ответа от сервера (если необходимо)
@@ -178,7 +178,8 @@ class Scene1 extends Phaser.Scene {
 			this.speed += 0.350;
 			this.speed = parseFloat(this.speed.toFixed(2));
 			this.chekScore = this.score;
-			console.log(this.chekScore);
+			//console.log(this.chekScore);
+			console.log(this.speed);
 		}
 	}
 	
