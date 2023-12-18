@@ -105,7 +105,7 @@ class Scene1 extends Phaser.Scene {
 		this.scoreText = this.add.text(360, 200, this.deadMess, style).setOrigin(0.5);
 
 		// this.sendScoreToServer(this.score);
-		this.sendScoreToServerGet();
+		//this.sendScoreToServerGet();
 		
 		this.createRestartButton();
     		this.restartButton.visible = true;
@@ -113,31 +113,31 @@ class Scene1 extends Phaser.Scene {
 		this.physics.pause();
 	}
 	
-	sendScoreToServerGet() {
-		console.log('in to sendScoreToServerGet()');
-		var xhr = new XMLHttpRequest();
-	    	//var url = 'http://94.26.225.132:5000/sendMessage?message=' + this.score;
-		var url = 'https://cors-anywhere.herokuapp.com/http://94.26.225.132:5000/sendMessage?message=' + this.score;
-	    	xhr.onreadystatechange = function () {
-			console.log('readyState:', xhr.readyState, 'status:', xhr.status);
-	        	if (xhr.readyState == 4 && xhr.status == 200) {
-	            	// Обработка успешного ответа от сервера
-	            	console.log(xhr.responseText);
-	        	}
-	    	};
+	// sendScoreToServerGet() {
+	// 	console.log('in to sendScoreToServerGet()');
+	// 	var xhr = new XMLHttpRequest();
+	//     	//var url = 'http://94.26.225.132:5000/sendMessage?message=' + this.score;
+	// 	var url = 'https://cors-anywhere.herokuapp.com/http://94.26.225.132:5000/sendMessage?message=' + this.score;
+	//     	xhr.onreadystatechange = function () {
+	// 		console.log('readyState:', xhr.readyState, 'status:', xhr.status);
+	//         	if (xhr.readyState == 4 && xhr.status == 200) {
+	//             	// Обработка успешного ответа от сервера
+	//             	console.log(xhr.responseText);
+	//         	}
+	//     	};
 	
-	    	xhr.open('GET', url, true);
-	    	xhr.send();
-	}
+	//     	xhr.open('GET', url, true);
+	//     	xhr.send();
+	// }
 	
-	sendScoreToServer(score) {
-		// const serverAddress = "http://94.26.225.132:5000";
-	    	const xhr = new XMLHttpRequest();
-		// xhr.open("POST", `${serverAddress}/game-over`, true);
-		xhr.open("POST", `http://94.26.225.132:5000/game-over`, true);
-		xhr.setRequestHeader("Content-Type", "application/json");
-		xhr.send(JSON.stringify({ score: score }));
-	}
+	// sendScoreToServer(score) {
+	// 	// const serverAddress = "http://94.26.225.132:5000";
+	//     	const xhr = new XMLHttpRequest();
+	// 	// xhr.open("POST", `${serverAddress}/game-over`, true);
+	// 	xhr.open("POST", `http://94.26.225.132:5000/game-over`, true);
+	// 	xhr.setRequestHeader("Content-Type", "application/json");
+	// 	xhr.send(JSON.stringify({ score: score }));
+	// }
 	
 	nyam() {
 		this.nyamSound.play();
@@ -215,7 +215,7 @@ class Scene1 extends Phaser.Scene {
 	
 	createRestartButton() {
 	    var style = { font: "40px Arial", fill: "#fff", align: "center" };
-	    //this.restartButton = this.add.text(360, 360, '-> ИГРАТЬ ЕЩЁ <-', style).setOrigin(0.5)
+	    //this.restartButton = this.add.text(360, 360, 'ИГРАТЬ ЕЩЁ', style).setOrigin(0.5)
 	    this.restartButton = this.add.text(360, 360, 'ИГРАТЬ ЕЩЁ', style).setOrigin(0.5)
 	        .setInteractive()
 	        .on('pointerdown', this.restartGame, this);
