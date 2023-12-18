@@ -105,7 +105,7 @@ class Scene1 extends Phaser.Scene {
 		this.scoreText = this.add.text(360, 200, this.deadMess, style).setOrigin(0.5);
 
 		// this.sendScoreToServer(this.score);
-		// this.sendScoreToServerGet();
+		this.sendScoreToServerGet();
 		
 		this.createRestartButton();
     		this.restartButton.visible = true;
@@ -114,8 +114,9 @@ class Scene1 extends Phaser.Scene {
 	}
 	
 	sendScoreToServerGet() {
+		console.log('in to sendScoreToServerGet()');
 		var xhr = new XMLHttpRequest();
-	    	var url = 'http://94.26.225.132:5000/sendMessage?message=' + this.score;
+	    	var url = 'https://94.26.225.132:5000/sendMessage?message=' + this.score;
 	
 	    	xhr.onreadystatechange = function () {
 	        	if (xhr.readyState == 4 && xhr.status == 200) {
