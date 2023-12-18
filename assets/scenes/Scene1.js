@@ -104,8 +104,8 @@ class Scene1 extends Phaser.Scene {
 		var style = {font: "60px Arial", fill: "#fff", align: "center"};
 		this.scoreText = this.add.text(360, 200, this.deadMess, style).setOrigin(0.5);
 
-		//this.sendScoreToServer(this.score);
-		this.sendScoreToServerGet();
+		// this.sendScoreToServer(this.score);
+		// this.sendScoreToServerGet();
 		
 		this.createRestartButton();
     		this.restartButton.visible = true;
@@ -115,17 +115,17 @@ class Scene1 extends Phaser.Scene {
 	
 	sendScoreToServerGet() {
 		var xhr = new XMLHttpRequest();
-	    var url = 'http://94.26.225.132:5000/sendMessage?message=' + this.score;
+	    	var url = 'http://94.26.225.132:5000/sendMessage?message=' + this.score;
 	
-	    xhr.onreadystatechange = function () {
-	        if (xhr.readyState == 4 && xhr.status == 200) {
-	            // Обработка успешного ответа от сервера (если необходимо)
-	            console.log(xhr.responseText);
-	        }
-	    };
+	    	xhr.onreadystatechange = function () {
+	        	if (xhr.readyState == 4 && xhr.status == 200) {
+	            	// Обработка успешного ответа от сервера (если необходимо)
+	            	console.log(xhr.responseText);
+	        	}
+	    	};
 	
-	    xhr.open('GET', url, true);
-	    xhr.send();
+	    	xhr.open('GET', url, true);
+	    	xhr.send();
 	}
 	
 	sendScoreToServer(score) {
@@ -184,25 +184,25 @@ class Scene1 extends Phaser.Scene {
 	createEnemy() {
 		//console.log("createEnemy");
 		this.addEnemySound.play();
-        this.newEnemy = this.add.image(
-            Phaser.Math.Between(100, 620),
-            Phaser.Math.Between(100, 1180),
-            "textures",
-            "Enemy"
-        );
-        this.newEnemy.setScale(2, 2);
-        this.physics.add.existing(this.newEnemy);
-		
+	        this.newEnemy = this.add.image(
+	            Phaser.Math.Between(100, 620),
+	            Phaser.Math.Between(100, 1180),
+	            "textures",
+	            "Enemy"
+	        );
+	        this.newEnemy.setScale(2, 2);
+	        this.physics.add.existing(this.newEnemy);
+			
 		while (this.checkOverlap(this.newEnemy, this.fPlayer) ||
 			this.checkOverlap(this.newEnemy, this.fEnemy) ||
-	 		this.checkOverlap(this.newEnemy, this.fApple)
+			this.checkOverlap(this.newEnemy, this.fApple)
 		) {
-	        this.newEnemy.x = Phaser.Math.Between(100, 620);
-	        this.newEnemy.y = Phaser.Math.Between(100, 1180);
-	    }
+		this.newEnemy.x = Phaser.Math.Between(100, 620);
+		this.newEnemy.y = Phaser.Math.Between(100, 1180);
+	    	}
 		this.physics.add.overlap(this.fPlayer, this.newEnemy, this.boom, null, this);
-
-    }
+	
+	}
 	
 	chekEdgeOfField() {
 		if (this.fPlayer.x < 0 || this.fPlayer.x > 720 || this.fPlayer.y < 0 || this.fPlayer.y > 1280) {
