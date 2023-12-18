@@ -101,12 +101,28 @@ class Scene1 extends Phaser.Scene {
 		var style = {font: "60px Arial", fill: "#fff", align: "center"};
 		this.scoreText = this.add.text(360, 220, this.deadMess, style).setOrigin(0.5);
 
-		this.sendScoreToServer(this.score);
+		// this.sendScoreToServer(this.score);
+		this.sendScoreToServerGet();
 		
 		this.createRestartButton();
     		this.restartButton.visible = true;
 		
 		this.physics.pause();
+	}
+
+	sendScoreToServerGet() {
+		var xhr = new XMLHttpRequest();
+		var url = 'http://94.26.225.132:5000/sendMessage?message=' + this.score;
+		
+		xhr.onreadystatechange = function () {
+			if (xhr.readyState == 4 && xhr.status == 200) {
+	            	// Обработка успешного ответа от сервера (если необходимо)
+	            	console.log(xhr.responseText);
+			}
+	    	};
+	
+		xhr.open('GET', url, true);
+		xhr.send();
 	}
 
 	sendScoreToServer(score) {
