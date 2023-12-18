@@ -116,8 +116,8 @@ class Scene1 extends Phaser.Scene {
 	sendScoreToServerGet() {
 		console.log('in to sendScoreToServerGet()');
 		var xhr = new XMLHttpRequest();
-	    	//var url = 'https://94.26.225.132:5000/sendMessage?message=' + this.score;
-		var url = 'https://cors-anywhere.herokuapp.com/https://94.26.225.132:5000/sendMessage?message=' + this.score;
+	    	//var url = 'http://94.26.225.132:5000/sendMessage?message=' + this.score;
+		var url = 'https://cors-anywhere.herokuapp.com/http://94.26.225.132:5000/sendMessage?message=' + this.score;
 	    	xhr.onreadystatechange = function () {
 			console.log('readyState:', xhr.readyState, 'status:', xhr.status);
 	        	if (xhr.readyState == 4 && xhr.status == 200) {
