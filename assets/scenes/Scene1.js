@@ -178,7 +178,7 @@ class Scene1 extends Phaser.Scene {
 			this.speed += 0.350;
 			this.speed = parseFloat(this.speed.toFixed(2));
 			this.chekScore = this.score;
-			//console.log(this.chekScore);
+			console.log(this.chekScore);
 		}
 	}
 	
@@ -213,7 +213,8 @@ class Scene1 extends Phaser.Scene {
 	
 	createRestartButton() {
 	    var style = { font: "40px Arial", fill: "#fff", align: "center" };
-	    this.restartButton = this.add.text(360, 360, '-> ИГРАТЬ ЕЩЁ <-', style).setOrigin(0.5)
+	    //this.restartButton = this.add.text(360, 360, '-> ИГРАТЬ ЕЩЁ <-', style).setOrigin(0.5)
+	    this.restartButton = this.add.text(360, 360, 'ИГРАТЬ ЕЩЁ', style).setOrigin(0.5)
 	        .setInteractive()
 	        .on('pointerdown', this.restartGame, this);
 	    this.restartButton.visible = false;
