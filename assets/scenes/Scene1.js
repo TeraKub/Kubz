@@ -66,12 +66,12 @@ class Scene1 extends Phaser.Scene {
 		this.up = false;
 	}
 	
-	update() {
+	update(time, delta) {
 		if (!this.moove) {
 			return;
 		}
 		
-		this.playerMove();
+		this.playerMove(delta);
 		this.chekEdgeOfField();
 		this.chekHardest();
 	}
@@ -226,7 +226,9 @@ class Scene1 extends Phaser.Scene {
 		this.scene.restart();
 	}
 	
-	playerMove() {
+	playerMove(delta) {
+		const ratio = 16.6667;
+		
 		if (this.cursors.right.isDown) {
 			this.moveRight();
 		}
@@ -241,16 +243,16 @@ class Scene1 extends Phaser.Scene {
 		}
 		
 		if (this.right) {
-			this.fPlayer.x += this.speed;
+			this.fPlayer.x += this.speed * delta / ratio;
 		}
 		if (this.left) {
-			this.fPlayer.x -= this.speed;
+			this.fPlayer.x -= this.speed * delta / ratio;
 		}
 		if (this.down) {
-			this.fPlayer.y += this.speed;
+			this.fPlayer.y += this.speed * delta / ratio;
 		}
 		if (this.up) {
-			this.fPlayer.y -= this.speed;
+			this.fPlayer.y -= this.speed * delta / ratio;
 		}
 		
 		if (this.right || this.left || this.down || this.up) {
