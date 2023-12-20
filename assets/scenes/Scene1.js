@@ -70,12 +70,12 @@ class Scene1 extends Phaser.Scene {
 		this.up = false;
 
 		const urlParams = new URLSearchParams(window.location.search);
-		const firstName = urlParams.get('first_name');
+		this.firstName = urlParams.get('first_name');
 		const username = urlParams.get('username');
 	 	const chatId = urlParams.get('chat_id');
 	
 		console.log('Received parameters:');
-		console.log('First Name:', firstName);
+		console.log('First Name:', this.firstName);
 		console.log('Username:', username);
 		console.log('Chat ID:', chatId);
 	}
@@ -159,7 +159,7 @@ class Scene1 extends Phaser.Scene {
 	    }
 		
 		this.score += 1;
-		this.scoreText.setText('очки: ' + this.score);
+		this.scoreText.setText(this.firstName + ': ' + this.score);
 		
 		this.tweens.add({
 			targets: this.fPlayer,
@@ -174,7 +174,7 @@ class Scene1 extends Phaser.Scene {
 	createScore() {
 		this.score = 0;
 		var style = {font: "40px Arial", fill: "#fff"};
-		this.scoreText = this.add.text(20, 20, 'очки: ' + this.score, style);
+		this.scoreText = this.add.text(20, 20, this.firstName + ': ' + this.score, style);
 	}
 	
 	chekHardest() {
