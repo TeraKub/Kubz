@@ -6,6 +6,8 @@ class Scene1 extends Phaser.Scene {
 	}
 	
 	_create() {
+		this.enemies = [];
+		
 		var Player = this.add.image(360.0, 640.0, "textures", "Player");
 		Player.setScale(2.0, 2.0);
 		
@@ -23,6 +25,8 @@ class Scene1 extends Phaser.Scene {
 		this.fPlayer = Player;
 		this.fApple = Apple;
 		this.fEnemy = Enemy;
+		
+		this.enemies.push(this.fPlayer, this.fEnemy);
 	}
 	
 	create() {
@@ -80,6 +84,15 @@ class Scene1 extends Phaser.Scene {
 	    return Phaser.Geom.Intersects.RectangleToRectangle(objectA.getBounds(), objectB.getBounds());
 	}
 	
+	checkOverlapWithPrevious(newEnemy) {
+    for (const enemy of this.enemies) {
+        if (this.checkOverlap(newEnemy, enemy)) {
+            return true;
+        }
+    }
+    return false;
+}
+	
 	boom() {
 		this.muslo.stop();
 		this.boomSound.play();
@@ -104,48 +117,33 @@ class Scene1 extends Phaser.Scene {
 		var style = {font: "60px Arial", fill: "#fff", align: "center"};
 		this.scoreText = this.add.text(360, 200, this.deadMess, style).setOrigin(0.5);
 
-		// this.sendScoreToServer(this.score);
 		//this.sendScoreToServerGet();
 		
 		this.createRestartButton();
-    		this.restartButton.visible = true;
+    	this.restartButton.visible = true;
 		
 		this.physics.pause();
 	}
+
+	//sendScoreToServerGet() {
+		//var xhr = new XMLHttpRequest();
+	    //var url = 'http://94.26.225.132:5000/sendMessage?message=' + this.score;
 	
-	// sendScoreToServerGet() {
-	// 	console.log('in to sendScoreToServerGet()');
-	// 	var xhr = new XMLHttpRequest();
-	//     	//var url = 'http://94.26.225.132:5000/sendMessage?message=' + this.score;
-	// 	var url = 'https://cors-anywhere.herokuapp.com/http://94.26.225.132:5000/sendMessage?message=' + this.score;
-	//     	xhr.onreadystatechange = function () {
-	// 		console.log('readyState:', xhr.readyState, 'status:', xhr.status);
-	//         	if (xhr.readyState == 4 && xhr.status == 200) {
-	//             	// Обработка успешного ответа от сервера
-	//             	console.log(xhr.responseText);
-	//         	}
-	//     	};
+	    /*xhr.onreadystatechange = function () {
+	        if (xhr.readyState == 4 && xhr.status == 200) {
+	            // Обработка успешного ответа от сервера (если необходимо)
+	            console.log(xhr.responseText);
+	        }
+	    };*/
 	
-	//     	xhr.open('GET', url, true);
-	//     	xhr.send();
-	// }
-	
-	// sendScoreToServer(score) {
-	// 	// const serverAddress = "http://94.26.225.132:5000";
-	//     	const xhr = new XMLHttpRequest();
-	// 	// xhr.open("POST", `${serverAddress}/game-over`, true);
-	// 	xhr.open("POST", `http://94.26.225.132:5000/game-over`, true);
-	// 	xhr.setRequestHeader("Content-Type", "application/json");
-	// 	xhr.send(JSON.stringify({ score: score }));
-	// }
+	    //xhr.open('GET', url, true);
+	    //xhr.send();
+	//}
 	
 	nyam() {
 		this.nyamSound.play();
 
-		while (this.checkOverlap(this.fApple, this.fEnemy) ||
-			this.checkOverlap(this.fApple, this.fPlayer)  ||
-	 		(this.newEnemy && this.checkOverlap(this.fApple, this.newEnemy))
-		) {
+		while (this.checkOverlapWithPrevious(this.fApple)) {
 	        this.fApple.x = Phaser.Math.Between(100, 620);
 	        this.fApple.y = Phaser.Math.Between(100, 1180);
 	    }
@@ -176,36 +174,35 @@ class Scene1 extends Phaser.Scene {
 		}
 		
 		if (this.score == this.chekScore + 5) {
-			this.speed += 0.350;
+			this.speed += 0.250;
 			this.speed = parseFloat(this.speed.toFixed(2));
 			this.chekScore = this.score;
 			//console.log(this.chekScore);
-			console.log(this.speed);
 		}
 	}
 	
 	createEnemy() {
 		//console.log("createEnemy");
 		this.addEnemySound.play();
-	        this.newEnemy = this.add.image(
-	            Phaser.Math.Between(100, 620),
-	            Phaser.Math.Between(100, 1180),
-	            "textures",
-	            "Enemy"
-	        );
-	        this.newEnemy.setScale(2, 2);
-	        this.physics.add.existing(this.newEnemy);
-			
-		while (this.checkOverlap(this.newEnemy, this.fPlayer) ||
-			this.checkOverlap(this.newEnemy, this.fEnemy) ||
-			this.checkOverlap(this.newEnemy, this.fApple)
-		) {
-		this.newEnemy.x = Phaser.Math.Between(100, 620);
-		this.newEnemy.y = Phaser.Math.Between(100, 1180);
-	    	}
-		this.physics.add.overlap(this.fPlayer, this.newEnemy, this.boom, null, this);
-	
-	}
+        const newEnemy = this.add.image(
+            Phaser.Math.Between(100, 620),
+            Phaser.Math.Between(100, 1180),
+            "textures",
+            "Enemy"
+        );
+        newEnemy.setScale(2, 2);
+        //this.physics.add.existing(this.newEnemy);
+		
+		while (this.checkOverlapWithPrevious(newEnemy)) {
+	        newEnemy.x = Phaser.Math.Between(100, 620);
+	        newEnemy.y = Phaser.Math.Between(100, 1180);
+	    }
+
+		this.physics.add.existing(newEnemy);
+		this.physics.add.overlap(this.fPlayer, newEnemy, this.boom, null, this);
+
+		this.enemies.push(newEnemy);
+    }
 	
 	chekEdgeOfField() {
 		if (this.fPlayer.x < 0 || this.fPlayer.x > 720 || this.fPlayer.y < 0 || this.fPlayer.y > 1280) {
@@ -215,8 +212,7 @@ class Scene1 extends Phaser.Scene {
 	
 	createRestartButton() {
 	    var style = { font: "40px Arial", fill: "#fff", align: "center" };
-	    //this.restartButton = this.add.text(360, 360, 'ИГРАТЬ ЕЩЁ', style).setOrigin(0.5)
-	    this.restartButton = this.add.text(360, 360, 'ИГРАТЬ ЕЩЁ', style).setOrigin(0.5)
+	    this.restartButton = this.add.text(360, 360, '🎄ИГРАТЬ ЕЩЁ🎄 ', style).setOrigin(0.5)
 	        .setInteractive()
 	        .on('pointerdown', this.restartGame, this);
 	    this.restartButton.visible = false;
