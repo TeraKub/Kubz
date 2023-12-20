@@ -174,7 +174,7 @@ class Scene1 extends Phaser.Scene {
 	createScore() {
 		this.score = 0;
 		var style = {font: "40px Arial", fill: "#fff"};
-		this.scoreText = this.add.text(20, 20, this.firstName + ': ' + this.score, style);
+		this.scoreText = this.add.text(20, 20, 'очки: ' + this.score, style);
 	}
 	
 	chekHardest() {
