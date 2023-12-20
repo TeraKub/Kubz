@@ -68,6 +68,16 @@ class Scene1 extends Phaser.Scene {
 		this.left = false;
 		this.down = false;
 		this.up = false;
+
+		const urlParams = new URLSearchParams(window.location.search);
+		const firstName = urlParams.get('first_name');
+		const username = urlParams.get('username');
+	 	const chatId = urlParams.get('chat_id');
+	
+		console.log('Received parameters:');
+		console.log('First Name:', firstName);
+		console.log('Username:', username);
+		console.log('Chat ID:', chatId);
 	}
 	
 	update(time, delta) {
