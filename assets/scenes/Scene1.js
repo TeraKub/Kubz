@@ -40,6 +40,16 @@ class Scene1 extends Phaser.Scene {
 		
 		this.physics.add.overlap(this.fPlayer, this.fEnemy, this.boom, null, this);
 		this.physics.add.overlap(this.fPlayer, this.fApple, this.nyam, null, this);
+
+		const urlParams = new URLSearchParams(window.location.search);
+		this.firstName = urlParams.get('first_name');
+		const username = urlParams.get('username');
+	 	const chatId = urlParams.get('chat_id');
+	
+		console.log('Received parameters:');
+		console.log('First Name:', this.firstName);
+		console.log('Username:', username);
+		console.log('Chat ID:', chatId);
 		
 		this.newEnemy = null;
 		this.createScore();
@@ -68,16 +78,6 @@ class Scene1 extends Phaser.Scene {
 		this.left = false;
 		this.down = false;
 		this.up = false;
-
-		const urlParams = new URLSearchParams(window.location.search);
-		this.firstName = urlParams.get('first_name');
-		const username = urlParams.get('username');
-	 	const chatId = urlParams.get('chat_id');
-	
-		console.log('Received parameters:');
-		console.log('First Name:', this.firstName);
-		console.log('Username:', username);
-		console.log('Chat ID:', chatId);
 	}
 	
 	update(time, delta) {
@@ -174,7 +174,7 @@ class Scene1 extends Phaser.Scene {
 	createScore() {
 		this.score = 0;
 		var style = {font: "40px Arial", fill: "#fff"};
-		this.scoreText = this.add.text(20, 20, 'очки: ' + this.score, style);
+		this.scoreText = this.add.text(20, 20, this.firstName + ': ' + this.score, style);
 	}
 	
 	chekHardest() {
