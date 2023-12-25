@@ -72,7 +72,8 @@ class Scene1 extends Phaser.Scene {
 		
 		this.speed = 5;
 		var style = {font: "20px Arial", fill: "#fff"};
-		this.speedText = this.add.text(20, 1260, this.speed * 100, style);
+		var mess = this.speed * 100;
+		this.speedText = this.add.text(20, 1260, mess, style);
 		
 		this.chekScore = 0;
 		this.isEnemy = false;
@@ -201,7 +202,8 @@ class Scene1 extends Phaser.Scene {
 			this.speed = parseFloat(this.speed.toFixed(2));
 			this.chekScore = this.score;
 			//console.log(this.chekScore);
-			this.speedText.setText(this.speed * 100);
+			var mess = this.speed * 100;
+			this.speedText.setText(mess);
 		}
 	}
 	
