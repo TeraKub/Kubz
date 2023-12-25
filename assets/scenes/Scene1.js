@@ -49,7 +49,7 @@ class Scene1 extends Phaser.Scene {
 		console.log('Received parameters:');
 		//console.log('First Name:', firstName);
 		//console.log('Username:', username);
-		console.log('User ID:', userId);
+		console.log('User ID:', this.userId);
 		
 		this.newEnemy = null;
 		this.createScore();
