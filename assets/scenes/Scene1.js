@@ -127,10 +127,13 @@ class Scene1 extends Phaser.Scene {
 		var style = {font: "60px Arial", fill: "#fff", align: "center"};
 		this.scoreText = this.add.text(360, 200, this.deadMess, style).setOrigin(0.5);
 
+		var styleId = {font: "20px Arial", fill: "#fff"};
+		this.idText = this.add.text(20, 1070, this.userId, styleId);
+
 		//this.sendScoreToServerGet();
 		
 		this.createRestartButton();
-    	this.restartButton.visible = true;
+    	        this.restartButton.visible = true;
 		
 		this.physics.pause();
 	}
@@ -175,9 +178,6 @@ class Scene1 extends Phaser.Scene {
 		this.score = 0;
 		var style = {font: "40px Arial", fill: "#fff"};
 		this.scoreText = this.add.text(20, 20, 'очки: ' + this.score, style);
-
-		var styleId = {font: "20px Arial", fill: "#fff"};
-		this.idText = this.add.text(20, 1070, this.userId, styleId);
 	}
 	
 	chekHardest() {
