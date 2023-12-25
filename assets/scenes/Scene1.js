@@ -183,6 +183,9 @@ class Scene1 extends Phaser.Scene {
 			yoyo: true
 		});
 		this.isEnemy = true;
+		this.speed = (this.score * 5 + 500) / 100;
+		var mess = this.speed * 100;
+		this.speedText.setText(mess);
 	}
 	
 	createScore() {
@@ -197,14 +200,14 @@ class Scene1 extends Phaser.Scene {
 			this.isEnemy = false;
 		}
 		
-		if (this.score == this.chekScore + 5) {
-			this.speed += 0.250;
-			this.speed = parseFloat(this.speed.toFixed(2));
-			this.chekScore = this.score;
-			//console.log(this.chekScore);
-			var mess = this.speed * 100;
-			this.speedText.setText(mess);
-		}
+		// if (this.score == this.chekScore + 5) {
+		// 	this.speed += 0.250;
+		// 	this.speed = parseFloat(this.speed.toFixed(2));
+		// 	this.chekScore = this.score;
+		// 	//console.log(this.chekScore);
+		// 	var mess = this.speed * 100;
+		// 	this.speedText.setText(mess);
+		// }
 	}
 	
 	createEnemy() {
