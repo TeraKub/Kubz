@@ -130,8 +130,8 @@ class Scene1 extends Phaser.Scene {
 		var style = {font: "60px Arial", fill: "#fff", align: "center"};
 		this.scoreText = this.add.text(360, 200, this.deadMess, style).setOrigin(0.5);
 
-		var styleId = {font: "20px Arial", fill: "#fff"};
-		this.idText = this.add.text(20, 1260, this.userId, styleId);
+		// var styleId = {font: "20px Arial", fill: "#fff"};
+		// this.idText = this.add.text(20, 1260, this.userId, styleId);
 
 		//this.sendScoreToServerGet();
 		
