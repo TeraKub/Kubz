@@ -109,20 +109,23 @@ class Scene1 extends Phaser.Scene {
 		this.moove = false;
 		
 		this.deadMess = 'ЛОШАРА!';
-		if (this.score > 19) {
+		if (this.score > 29) {
 			this.deadMess = 'ЧУШПАН!';
 		}
-		if (this.score > 39) {
+		if (this.score > 59) {
 			this.deadMess = 'СКОРЛУПА!';
 		}
-		if (this.score > 59) {
+		if (this.score > 89) {
 			this.deadMess = 'ПОМАЗОК!';
 		}
-		if (this.score > 79) {
+		if (this.score > 119) {
 			this.deadMess = 'СТАРШАК!';
 		}
-		if (this.score > 99) {
+		if (this.score > 149) {
 			this.deadMess = 'МАСИК!!!';
+		}
+		if (this.score > 179) {
+			this.deadMess = 'Я ХОЧУ ОТ ТЕБЯ ДЕТЕЙ';
 		}
 		var style = {font: "60px Arial", fill: "#fff", align: "center"};
 		this.scoreText = this.add.text(360, 200, this.deadMess, style).setOrigin(0.5);
