@@ -42,14 +42,14 @@ class Scene1 extends Phaser.Scene {
 		this.physics.add.overlap(this.fPlayer, this.fApple, this.nyam, null, this);
 
 		const urlParams = new URLSearchParams(window.location.search);
-		const firstName = urlParams.get('first_name');
-		const username = urlParams.get('username');
-	 	const chatId = urlParams.get('chat_id');
+		//const firstName = urlParams.get('first_name');
+		//const username = urlParams.get('username');
+	 	const userId = urlParams.get('chat_id');
 	
 		console.log('Received parameters:');
-		console.log('First Name:', firstName);
-		console.log('Username:', username);
-		console.log('Chat ID:', chatId);
+		//console.log('First Name:', firstName);
+		//console.log('Username:', username);
+		console.log('User ID:', userId);
 		
 		this.newEnemy = null;
 		this.createScore();
