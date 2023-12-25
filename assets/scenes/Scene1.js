@@ -159,10 +159,14 @@ class Scene1 extends Phaser.Scene {
 	nyam() {
 		this.nyamSound.play();
 
-		while (this.checkOverlapWithPrevious(this.fApple)) {
-	        this.fApple.x = Phaser.Math.Between(100, 620);
-	        this.fApple.y = Phaser.Math.Between(100, 1180);
-	    }
+		const minDistance = 300;
+
+		while (this.checkOverlapWithPrevious(this.fApple) ||
+		Phaser.Math.Distance.Between(this.fApple.x, this.fApple.y, this.fPlayer.x, this.fPlayer.y) < minDistance
+		) {
+			this.fApple.x = Phaser.Math.Between(100, 620);
+			this.fApple.y = Phaser.Math.Between(100, 1180);
+		}
 		
 		this.score += 1;
 		this.scoreText.setText('очки: ' + this.score);
