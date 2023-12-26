@@ -71,9 +71,9 @@ class Scene1 extends Phaser.Scene {
 	    }
 		
 		this.speed = 5;
-		var style = {font: "20px Arial", fill: "#fff"};
-		var mess = this.speed * 100;
-		this.speedText = this.add.text(20, 1260, mess, style);
+		// var style = {font: "20px Arial", fill: "#fff"};
+		// var mess = this.speed * 100;
+		// this.speedText = this.add.text(20, 1260, mess, style);
 		
 		this.chekScore = 0;
 		this.isEnemy = false;
@@ -184,8 +184,8 @@ class Scene1 extends Phaser.Scene {
 		});
 		this.isEnemy = true;
 		this.speed = (this.score * 5 + 500) / 100;
-		var mess = this.speed * 100;
-		this.speedText.setText(mess);
+		// var mess = this.speed * 100;
+		// this.speedText.setText(mess);
 	}
 	
 	createScore() {
