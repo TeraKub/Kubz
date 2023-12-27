@@ -138,6 +138,7 @@ class Scene1 extends Phaser.Scene {
 		// this.idText = this.add.text(20, 1260, this.userId, styleId);
 
 		//this.sendScoreToServerGet();
+		this.sendScoreToFunction();
 		
 		this.createRestartButton();
     	        this.restartButton.visible = true;
@@ -145,6 +146,22 @@ class Scene1 extends Phaser.Scene {
 		this.physics.pause();
 	}
 
+	sendScoreToFunction() {
+		const functionUrl = "https://functions.yandexcloud.net/d4eiiom9l08770484vtj";
+		const requestUrl = `${functionUrl}?id=${this.userId}&score=${this.score}`;
+		
+		fetch(requestUrl)
+			.then((response) => response.json())
+			.then((data) => {
+				console.log(data);
+				// Обработка ответа от сервера (data)
+			})
+			.catch((error) => {
+				console.error("Error:", error);
+				// Обработка ошибки
+			});
+	}
+	
 	//sendScoreToServerGet() {
 		//var xhr = new XMLHttpRequest();
 	    //var url = 'http://94.26.225.132:5000/sendMessage?message=' + this.score;
