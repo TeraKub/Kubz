@@ -45,6 +45,7 @@ class Scene1 extends Phaser.Scene {
 		//const firstName = urlParams.get('first_name');
 		//const username = urlParams.get('username');
 	 	this.userId = urlParams.get('chat_id');
+		this.inlineId = urlParams.get('inline');
 	
 		console.log('Received parameters:');
 		//console.log('First Name:', firstName);
@@ -148,7 +149,7 @@ class Scene1 extends Phaser.Scene {
 
 	sendScoreToFunction() {
 		const functionUrl = "https://functions.yandexcloud.net/d4eiiom9l08770484vtj";
-		const requestUrl = `${functionUrl}?id=${this.userId}&score=${this.score}`;
+		const requestUrl = `${functionUrl}?id=${this.userId}&score=${this.score}&inline=${this.inlineId}`;
 		
 		fetch(requestUrl)
 			.then((response) => response.json())
