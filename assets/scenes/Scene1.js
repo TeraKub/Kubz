@@ -107,10 +107,10 @@ class Scene1 extends Phaser.Scene {
 			this.deadMess = 'ЧУШПАН!';
 		}
 		if (this.score > 49) {
-			this.deadMess = 'СКОРЛУПА!';
+			this.deadMess = 'ПОМАЗОК!';
 		}
 		if (this.score > 74) {
-			this.deadMess = 'ПОМАЗОК!';
+			this.deadMess = 'СКОРЛУПА!';
 		}
 		if (this.score > 99) {
 			this.deadMess = 'СТАРШАК!';
@@ -119,7 +119,13 @@ class Scene1 extends Phaser.Scene {
 			this.deadMess = 'МАСИК!!!';
 		}
 		if (this.score > 149) {
+			this.deadMess = 'МОНСТР!!!';
+		}
+		if (this.score > 174) {
 			this.deadMess = 'Я ХОЧУ ОТ ТЕБЯ ДЕТЕЙ';
+		}
+		if (this.score > 199) {
+			this.deadMess = '😇 БОГ 😇';
 		}
 		var style = {font: "60px Arial", fill: "#fff", align: "center"};
 		this.scoreText = this.add.text(360, 200, this.deadMess, style).setOrigin(0.5);
