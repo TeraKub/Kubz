@@ -42,15 +42,8 @@ class Scene1 extends Phaser.Scene {
 		this.physics.add.overlap(this.fPlayer, this.fApple, this.nyam, null, this);
 
 		const urlParams = new URLSearchParams(window.location.search);
-		//const firstName = urlParams.get('first_name');
-		//const username = urlParams.get('username');
 	 	this.userId = urlParams.get('chat_id');
 		this.inlineId = urlParams.get('inline');
-	
-		console.log('Received parameters:');
-		//console.log('First Name:', firstName);
-		//console.log('Username:', username);
-		console.log('User ID:', this.userId);
 		
 		this.newEnemy = null;
 		this.createScore();
@@ -65,17 +58,13 @@ class Scene1 extends Phaser.Scene {
 			 this.checkOverlap(this.fApple, this.fPlayer) ||
 			 this.checkOverlap(this.fEnemy, this.fPlayer)
 		) {
-	        this.fApple.x = Phaser.Math.Between(100, 620);
-	        this.fApple.y = Phaser.Math.Between(100, 1180);
-	        this.fEnemy.x = Phaser.Math.Between(100, 620);
-	        this.fEnemy.y = Phaser.Math.Between(100, 1180);
-	    }
+		        this.fApple.x = Phaser.Math.Between(100, 620);
+		        this.fApple.y = Phaser.Math.Between(100, 1180);
+		        this.fEnemy.x = Phaser.Math.Between(100, 620);
+			this.fEnemy.y = Phaser.Math.Between(100, 1180);
+		}
 		
 		this.speed = 5;
-		// var style = {font: "20px Arial", fill: "#fff"};
-		// var mess = this.speed * 100;
-		// this.speedText = this.add.text(20, 1260, mess, style);
-		
 		this.chekScore = 0;
 		this.isEnemy = false;
 		
@@ -96,17 +85,17 @@ class Scene1 extends Phaser.Scene {
 	}
 	
 	checkOverlap(objectA, objectB) {
-	    return Phaser.Geom.Intersects.RectangleToRectangle(objectA.getBounds(), objectB.getBounds());
+	    	return Phaser.Geom.Intersects.RectangleToRectangle(objectA.getBounds(), objectB.getBounds());
 	}
 	
 	checkOverlapWithPrevious(newEnemy) {
-    for (const enemy of this.enemies) {
-        if (this.checkOverlap(newEnemy, enemy)) {
-            return true;
-        }
-    }
-    return false;
-}
+		for (const enemy of this.enemies) {
+			if (this.checkOverlap(newEnemy, enemy)) {
+			        return true;
+			}
+		}
+		return false;
+	}
 	
 	boom() {
 		this.muslo.stop();
@@ -135,15 +124,10 @@ class Scene1 extends Phaser.Scene {
 		var style = {font: "60px Arial", fill: "#fff", align: "center"};
 		this.scoreText = this.add.text(360, 200, this.deadMess, style).setOrigin(0.5);
 
-		// var styleId = {font: "20px Arial", fill: "#fff"};
-		// this.idText = this.add.text(20, 1260, this.userId, styleId);
-
-		//this.sendScoreToServerGet();
-		this.sendScoreToFunction();
+		this.sendScoreToFunction(); // Отправка результатов игры в облачную функцию
 		
 		this.createRestartButton();
     	        this.restartButton.visible = true;
-		
 		this.physics.pause();
 	}
 
@@ -162,21 +146,6 @@ class Scene1 extends Phaser.Scene {
 				// Обработка ошибки
 			});
 	}
-	
-	//sendScoreToServerGet() {
-		//var xhr = new XMLHttpRequest();
-	    //var url = 'http://94.26.225.132:5000/sendMessage?message=' + this.score;
-	
-	    /*xhr.onreadystatechange = function () {
-	        if (xhr.readyState == 4 && xhr.status == 200) {
-	            // Обработка успешного ответа от сервера (если необходимо)
-	            console.log(xhr.responseText);
-	        }
-	    };*/
-	
-	    //xhr.open('GET', url, true);
-	    //xhr.send();
-	//}
 	
 	nyam() {
 		this.nyamSound.play();
@@ -202,8 +171,6 @@ class Scene1 extends Phaser.Scene {
 		});
 		this.isEnemy = true;
 		this.speed = (this.score * 5 + 500) / 100;
-		// var mess = this.speed * 100;
-		// this.speedText.setText(mess);
 	}
 	
 	createScore() {
@@ -217,28 +184,19 @@ class Scene1 extends Phaser.Scene {
 			this.createEnemy();
 			this.isEnemy = false;
 		}
-		
-		// if (this.score == this.chekScore + 5) {
-		// 	this.speed += 0.250;
-		// 	this.speed = parseFloat(this.speed.toFixed(2));
-		// 	this.chekScore = this.score;
-		// 	//console.log(this.chekScore);
-		// 	var mess = this.speed * 100;
-		// 	this.speedText.setText(mess);
-		// }
 	}
 	
 	createEnemy() {
 		//console.log("createEnemy");
 		this.addEnemySound.play();
-        const newEnemy = this.add.image(
-            Phaser.Math.Between(100, 620),
-            Phaser.Math.Between(100, 1180),
-            "textures",
-            "Enemy"
-        );
-        newEnemy.setScale(2, 2);
-        //this.physics.add.existing(this.newEnemy);
+	        const newEnemy = this.add.image(
+	            Phaser.Math.Between(100, 620),
+	            Phaser.Math.Between(100, 1180),
+	            "textures",
+	            "Enemy"
+	        );
+	        newEnemy.setScale(2, 2);
+	        //this.physics.add.existing(this.newEnemy);
 		
 		while (this.checkOverlapWithPrevious(newEnemy)) {
 	        newEnemy.x = Phaser.Math.Between(100, 620);
@@ -249,7 +207,7 @@ class Scene1 extends Phaser.Scene {
 		this.physics.add.overlap(this.fPlayer, newEnemy, this.boom, null, this);
 
 		this.enemies.push(newEnemy);
-    }
+    	}
 	
 	chekEdgeOfField() {
 		if (this.fPlayer.x < 0 || this.fPlayer.x > 720 || this.fPlayer.y < 0 || this.fPlayer.y > 1280) {
