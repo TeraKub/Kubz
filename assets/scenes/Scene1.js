@@ -81,7 +81,7 @@ class Scene1 extends Phaser.Scene {
 		
 		this.playerMove(delta);
 		this.chekEdgeOfField();
-		this.chekHardest();
+		//this.chekHardest();
 	}
 	
 	checkOverlap(objectA, objectB) {
@@ -155,6 +155,14 @@ class Scene1 extends Phaser.Scene {
 	
 	nyam() {
 		this.nyamSound.play();
+		
+		this.score += 1;
+		this.scoreText.setText('очки: ' + this.score);
+		
+		if (this.score % 20 === 0 && this.isEnemy) {
+			this.createEnemy();
+			this.isEnemy = false;
+		}
 
 		const minDistance = 300;
 
@@ -164,9 +172,6 @@ class Scene1 extends Phaser.Scene {
 			this.fApple.x = Phaser.Math.Between(100, 620);
 			this.fApple.y = Phaser.Math.Between(100, 1180);
 		}
-		
-		this.score += 1;
-		this.scoreText.setText('очки: ' + this.score);
 		
 		this.tweens.add({
 			targets: this.fPlayer,
@@ -185,12 +190,12 @@ class Scene1 extends Phaser.Scene {
 		this.scoreText = this.add.text(20, 20, 'очки: ' + this.score, style);
 	}
 	
-	chekHardest() {
-		if (this.score % 20 === 0 && this.isEnemy) {
-			this.createEnemy();
-			this.isEnemy = false;
-		}
-	}
+	// chekHardest() {
+	// 	if (this.score % 20 === 0 && this.isEnemy) {
+	// 		this.createEnemy();
+	// 		this.isEnemy = false;
+	// 	}
+	// }
 	
 	createEnemy() {
 		//console.log("createEnemy");
