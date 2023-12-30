@@ -200,6 +200,9 @@ class Scene1 extends Phaser.Scene {
 	createEnemy() {
 		//console.log("createEnemy");
 		this.addEnemySound.play();
+
+		const minDistance = 30;
+		
 	        const newEnemy = this.add.image(
 	            Phaser.Math.Between(100, 620),
 	            Phaser.Math.Between(100, 1180),
@@ -209,7 +212,9 @@ class Scene1 extends Phaser.Scene {
 	        newEnemy.setScale(2, 2);
 	        //this.physics.add.existing(this.newEnemy);
 		
-		while (this.checkOverlapWithPrevious(newEnemy)) {
+		while (this.checkOverlapWithPrevious(newEnemy) ||
+		Phaser.Math.Distance.Between(newEnemy.x, newEnemy.y, this.fPlayer.x, this.fPlayer.y) < minDistance
+		      ) {
 	        newEnemy.x = Phaser.Math.Between(100, 620);
 	        newEnemy.y = Phaser.Math.Between(100, 1180);
 	    }
