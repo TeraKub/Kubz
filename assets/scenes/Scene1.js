@@ -192,7 +192,7 @@ class Scene1 extends Phaser.Scene {
 		this.scoreText = this.add.text(20, 20, 'очки: ' + this.score, style);
 
 		var versionStyle = {font: "20px Arial", fill: "#fff"};
-		this.scoreText = this.add.text(20, 1260, 'V 1.1.1', versionStyle);
+		this.versionText = this.add.text(20, 1260, 'V 1.1.1', versionStyle);
 	}
 	
 	// chekHardest() {
