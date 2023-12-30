@@ -161,7 +161,7 @@ class Scene1 extends Phaser.Scene {
 		this.scoreText.setText('очки: ' + this.score);
 		
 		if (this.score % 20 === 0 && this.isEnemy) {
-			this.distanceForRed += 5;
+			this.distanceForRed += 10;
 			this.createEnemy();
 			this.isEnemy = false;
 		}
