@@ -67,7 +67,7 @@ class Scene1 extends Phaser.Scene {
 		this.speed = 5;
 		this.chekScore = 0;
 		this.isEnemy = false;
-		this.distanceForRed = 35;
+		this.distanceForRed = 45;
 		
 		this.right = false;
 		this.left = false;
@@ -192,7 +192,7 @@ class Scene1 extends Phaser.Scene {
 		this.scoreText = this.add.text(20, 20, 'очки: ' + this.score, style);
 
 		var versionStyle = {font: "20px Arial", fill: "#fff"};
-		this.versionText = this.add.text(20, 1260, 'V 1.1.1', versionStyle);
+		this.versionText = this.add.text(20, 1260, 'V 1.1.2', versionStyle);
 	}
 	
 	// chekHardest() {
