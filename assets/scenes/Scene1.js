@@ -67,7 +67,7 @@ class Scene1 extends Phaser.Scene {
 		this.speed = 5;
 		this.chekScore = 0;
 		this.isEnemy = false;
-		this.distanceForRed = 80;
+		this.distanceForRed = 120;
 		
 		this.right = false;
 		this.left = false;
@@ -161,7 +161,7 @@ class Scene1 extends Phaser.Scene {
 		this.scoreText.setText('очки: ' + this.score);
 		
 		if (this.score % 20 === 0 && this.isEnemy) {
-			this.distanceForRed += 10;
+			this.distanceForRed += 15;
 			this.createEnemy();
 			this.isEnemy = false;
 		}
@@ -192,7 +192,7 @@ class Scene1 extends Phaser.Scene {
 		this.scoreText = this.add.text(20, 20, 'очки: ' + this.score, style);
 
 		var versionStyle = {font: "20px Arial", fill: "#fff"};
-		this.versionText = this.add.text(20, 1260, 'V 1.1.3', versionStyle);
+		this.versionText = this.add.text(20, 1260, 'V 1.1.4', versionStyle);
 	}
 	
 	// chekHardest() {
