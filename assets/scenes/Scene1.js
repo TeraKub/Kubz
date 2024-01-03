@@ -74,10 +74,10 @@ class Scene1 extends Phaser.Scene {
 		this.down = false;
 		this.up = false;
 
-		this.sounds = true;
-		this.soundsOnBtn = this.add.image(680, 40, "textures", "SoundOn")
+		this.sounds = false;
+		this.soundsOffBtn = this.add.image(680, 40, "textures", "SoundOff")
 			.setInteractive()
-	        .on('pointerdown', this.soundsOff, this);
+	        .on('pointerdown', this.soundsOn, this);
 	}
 	
 	update(time, delta) {
@@ -219,7 +219,7 @@ class Scene1 extends Phaser.Scene {
 		this.scoreText = this.add.text(20, 20, 'очки: ' + this.score, style);
 
 		var versionStyle = {font: "20px Arial", fill: "#fff"};
-		this.versionText = this.add.text(20, 1260, 'V 1.2.0', versionStyle);
+		this.versionText = this.add.text(20, 1260, 'V 1.2.1', versionStyle);
 	}
 	
 	// chekHardest() {
