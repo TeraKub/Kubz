@@ -3,7 +3,9 @@
   "files": [
     "Design/Apple.png",
     "Design/Enemy.png",
-    "Design/Player.png"
+    "Design/Player.png",
+    "Design/SoundOff.png",
+    "Design/SoundOn.png"
   ],
   "settings": {
     "pot": false,
@@ -49,7 +51,7 @@
       "rotated": false,
       "frame": {
         "x": 2,
-        "y": 2,
+        "y": 86,
         "w": 40,
         "h": 40
       },
@@ -70,8 +72,8 @@
       "trimmed": true,
       "rotated": false,
       "frame": {
-        "x": 44,
-        "y": 2,
+        "x": 2,
+        "y": 44,
         "w": 40,
         "h": 40
       },
@@ -92,7 +94,7 @@
       "trimmed": true,
       "rotated": false,
       "frame": {
-        "x": 86,
+        "x": 2,
         "y": 2,
         "w": 40,
         "h": 40
@@ -108,6 +110,50 @@
         "h": 40
       },
       "name": "Player",
+      "regionIndex": -1
+    },
+    {
+      "trimmed": true,
+      "rotated": false,
+      "frame": {
+        "x": 2,
+        "y": 190,
+        "w": 51,
+        "h": 60
+      },
+      "spriteSourceSize": {
+        "x": 7,
+        "y": 0,
+        "w": 51,
+        "h": 60
+      },
+      "sourceSize": {
+        "w": 60,
+        "h": 60
+      },
+      "name": "SoundOff",
+      "regionIndex": -1
+    },
+    {
+      "trimmed": true,
+      "rotated": false,
+      "frame": {
+        "x": 2,
+        "y": 128,
+        "w": 51,
+        "h": 60
+      },
+      "spriteSourceSize": {
+        "x": 7,
+        "y": 0,
+        "w": 51,
+        "h": 60
+      },
+      "sourceSize": {
+        "w": 60,
+        "h": 60
+      },
+      "name": "SoundOn",
       "regionIndex": -1
     }
   ]}]
