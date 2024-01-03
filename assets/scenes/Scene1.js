@@ -73,6 +73,11 @@ class Scene1 extends Phaser.Scene {
 		this.left = false;
 		this.down = false;
 		this.up = false;
+
+		this.sounds = true;
+		this.soundsOnBtn = this.add.image(680, 40, "textures", "SoundOn")
+			.setInteractive()
+	        .on('pointerdown', this.soundsOff, this);
 	}
 	
 	update(time, delta) {
@@ -83,6 +88,23 @@ class Scene1 extends Phaser.Scene {
 		this.playerMove(delta);
 		this.chekEdgeOfField();
 		//this.chekHardest();
+	}
+
+	soundsOff() {
+		this.sounds = false;
+		this.soundsOnBtn.destroy();
+		this.soundsOffBtn = this.add.image(680, 40, "textures", "SoundOff")
+			.setInteractive()
+	        .on('pointerdown', this.soundsOn, this);
+		this.muslo.stop();
+	}
+	
+	soundsOn() {
+		this.sounds = true;
+		this.soundsOffBtn.destroy();
+		this.soundsOnBtn = this.add.image(680, 40, "textures", "SoundOn")
+			.setInteractive()
+	        .on('pointerdown', this.soundsOff, this);
 	}
 	
 	checkOverlap(objectA, objectB) {
@@ -99,8 +121,11 @@ class Scene1 extends Phaser.Scene {
 	}
 	
 	boom() {
-		this.muslo.stop();
-		this.boomSound.play();
+		if(this.sounds) {
+			this.muslo.stop();
+			this.boomSound.play();
+		}
+		
 		this.moove = false;
 		
 		this.deadMess = 'ЛОШАРА!';
@@ -155,7 +180,9 @@ class Scene1 extends Phaser.Scene {
 	}
 	
 	nyam() {
-		this.nyamSound.play();
+		if (this.sounds) {
+			this.nyamSound.play();
+		}
 		
 		this.score += 1;
 		this.scoreText.setText('очки: ' + this.score);
@@ -204,7 +231,9 @@ class Scene1 extends Phaser.Scene {
 	
 	createEnemy() {
 		//console.log("createEnemy");
-		this.addEnemySound.play();
+		if (this.sounds) {
+			this.addEnemySound.play();
+		}
 		
 	        const newEnemy = this.add.image(
 	            Phaser.Math.Between(100, 620),
@@ -276,7 +305,7 @@ class Scene1 extends Phaser.Scene {
 		}
 		
 		if (this.right || this.left || this.down || this.up) {
-	        if (!this.muslo.isPlaying) {
+	        if (!this.muslo.isPlaying && this.sounds) {
 	            this.muslo.play();
 	        }
 	    }
