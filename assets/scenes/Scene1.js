@@ -194,17 +194,23 @@ class Scene1 extends Phaser.Scene {
 			this.appleCollected = true;
 			this.score += 1;
 			this.scoreText.setText('очки: ' + this.score);
+
+			if (this.score % 20 === 0 && this.isEnemy) {
+			this.distanceForRed += 15;
+			this.createEnemy();
+			this.isEnemy = false;
+		}
 			
 			setTimeout(() => {
                 this.appleCollected = false;
             }, 500);
 		}
 		
-		if (this.score % 20 === 0 && this.isEnemy) {
-			this.distanceForRed += 15;
-			this.createEnemy();
-			this.isEnemy = false;
-		}
+		// if (this.score % 20 === 0 && this.isEnemy) {
+		// 	this.distanceForRed += 15;
+		// 	this.createEnemy();
+		// 	this.isEnemy = false;
+		// }
 
 		const minDistance = 300;
 
@@ -232,7 +238,7 @@ class Scene1 extends Phaser.Scene {
 		this.scoreText = this.add.text(20, 20, 'очки: ' + this.score, style);
 
 		var versionStyle = {font: "20px Arial", fill: "#fff"};
-		this.versionText = this.add.text(20, 1260, 'V 1.2.2', versionStyle);
+		this.versionText = this.add.text(20, 1260, 'V 1.2.3', versionStyle);
 	}
 	
 	createEnemy() {
