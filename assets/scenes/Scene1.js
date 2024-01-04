@@ -213,12 +213,6 @@ class Scene1 extends Phaser.Scene {
 				this.appleCollected = false;
 			}, 500);
 		}
-		
-		// if (this.score % 20 === 0 && this.isEnemy) {
-		// 	this.distanceForRed += 15;
-		// 	this.createEnemy();
-		// 	this.isEnemy = false;
-		// }
 
 		const minDistance = 300;
 
@@ -229,13 +223,6 @@ class Scene1 extends Phaser.Scene {
 			this.fApple.y = Phaser.Math.Between(100, 1180);
 		}
 		
-		// this.tweens.add({
-		// 	targets: this.fPlayer,
-		// 	duration: 150,   // milliseconds
-		// 	scaleX: 2.3,
-		// 	scaleY: 2.3,
-		// 	yoyo: true
-		// });
 		this.isEnemy = true;
 		this.speed = (this.score * 5 + 500) / 100;
 	}
