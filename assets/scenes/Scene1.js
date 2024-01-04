@@ -196,14 +196,22 @@ class Scene1 extends Phaser.Scene {
 			this.scoreText.setText('очки: ' + this.score);
 
 			if (this.score % 20 === 0 && this.isEnemy) {
-			this.distanceForRed += 15;
-			this.createEnemy();
-			this.isEnemy = false;
-		}
-			
+				this.distanceForRed += 15;
+				this.createEnemy();
+				this.isEnemy = false;
+			}
+
+			this.tweens.add({
+				targets: this.fPlayer,
+				duration: 150,   // milliseconds
+				scaleX: 2.3,
+				scaleY: 2.3,
+				yoyo: true
+			});
+				
 			setTimeout(() => {
-                this.appleCollected = false;
-            }, 500);
+				this.appleCollected = false;
+			}, 500);
 		}
 		
 		// if (this.score % 20 === 0 && this.isEnemy) {
@@ -221,13 +229,13 @@ class Scene1 extends Phaser.Scene {
 			this.fApple.y = Phaser.Math.Between(100, 1180);
 		}
 		
-		this.tweens.add({
-			targets: this.fPlayer,
-			duration: 150,   // milliseconds
-			scaleX: 2.3,
-			scaleY: 2.3,
-			yoyo: true
-		});
+		// this.tweens.add({
+		// 	targets: this.fPlayer,
+		// 	duration: 150,   // milliseconds
+		// 	scaleX: 2.3,
+		// 	scaleY: 2.3,
+		// 	yoyo: true
+		// });
 		this.isEnemy = true;
 		this.speed = (this.score * 5 + 500) / 100;
 	}
@@ -238,7 +246,7 @@ class Scene1 extends Phaser.Scene {
 		this.scoreText = this.add.text(20, 20, 'очки: ' + this.score, style);
 
 		var versionStyle = {font: "20px Arial", fill: "#fff"};
-		this.versionText = this.add.text(20, 1260, 'V 1.2.3', versionStyle);
+		this.versionText = this.add.text(20, 1260, 'V 1.2.4', versionStyle);
 	}
 	
 	createEnemy() {
