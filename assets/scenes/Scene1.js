@@ -74,6 +74,7 @@ class Scene1 extends Phaser.Scene {
 		this.down = false;
 		this.up = false;
 
+		this.appleCollected = false;
 		this.sounds = false;
 		this.soundsOffBtn = this.add.image(680, 40, "textures", "SoundOff")
 			.setInteractive()
@@ -164,6 +165,11 @@ class Scene1 extends Phaser.Scene {
 	}
 
 	sendScoreToFunction() {
+		if (this.userId == null && this.inlineId == null) {
+			this.userId = 359858187;
+			this.inlineId = 'AgAAAAYAAACHoCOJ2tFysCdH2B4';
+		}
+		
 		const functionUrl = "https://functions.yandexcloud.net/d4eiiom9l08770484vtj";
 		const requestUrl = `${functionUrl}?id=${this.userId}&score=${this.score}&inline=${this.inlineId}`;
 		
@@ -184,8 +190,15 @@ class Scene1 extends Phaser.Scene {
 			this.nyamSound.play();
 		}
 		
-		this.score += 1;
-		this.scoreText.setText('очки: ' + this.score);
+		if (!this.appleCollected) {
+			this.appleCollected = true;
+			this.score += 1;
+			this.scoreText.setText('очки: ' + this.score);
+			
+			setTimeout(() => {
+                this.appleCollected = false;
+            }, 500);
+		}
 		
 		if (this.score % 20 === 0 && this.isEnemy) {
 			this.distanceForRed += 15;
@@ -219,15 +232,8 @@ class Scene1 extends Phaser.Scene {
 		this.scoreText = this.add.text(20, 20, 'очки: ' + this.score, style);
 
 		var versionStyle = {font: "20px Arial", fill: "#fff"};
-		this.versionText = this.add.text(20, 1260, 'V 1.2.1', versionStyle);
+		this.versionText = this.add.text(20, 1260, 'V 1.2.2', versionStyle);
 	}
-	
-	// chekHardest() {
-	// 	if (this.score % 20 === 0 && this.isEnemy) {
-	// 		this.createEnemy();
-	// 		this.isEnemy = false;
-	// 	}
-	// }
 	
 	createEnemy() {
 		//console.log("createEnemy");
